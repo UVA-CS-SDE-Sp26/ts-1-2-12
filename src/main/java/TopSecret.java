@@ -9,5 +9,6 @@ public class TopSecret {
 
         FileHandler handler = new FileHandler(args);
         handler.readDefaultFiles();
+        handler.readFileFromDataFolder("test2.txt");
     }
 }
