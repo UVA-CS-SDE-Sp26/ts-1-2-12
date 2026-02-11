@@ -54,4 +54,20 @@ class FileHandlerTest {
     void readNonexistentDataFile(){
         assertNull(fileHandler.readFileFromDataFolder("testNonExistent.txt"));
     }
+    @Test
+    void testCharIndex1(){
+        assertEquals(fileHandler.readFileIndexFromData("test1.txt", 0), 'T');
+    }
+    @Test
+    void testCharIndex2(){
+        assertEquals(fileHandler.readFileIndexFromData("test2.txt", 1), 'h');
+    }
+    @Test
+    void testNullCharIndex(){
+        assertEquals(fileHandler.readFileIndexFromData("test1.txt", 999), ' ');
+    }
+    @Test
+    void testNonexistentFile(){
+        assertEquals(fileHandler.readFileIndex("fakeFile.txt", 999), ' ');
+    }
 }

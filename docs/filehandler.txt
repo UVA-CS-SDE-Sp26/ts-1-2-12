@@ -1,0 +1,14 @@
+FileHandler is tasked with reading files and writing/returning its values.
+It is also responsible for ensuring the file paths passed exist, ideally catching and preventing IOexceptions as well.
+FileHandler imports a variety of IO/File management libraries from the standard JDK.
+
+UML:
+
+Class FileHandler
+~~~~~~~~~~~~~~~~~
++FileHandler() # blank constructor for the class that is called if there are no commandline arguments.
++FileHandler(String[] args) # constructor that accounts for commandline arguments which specify existing files in the data folder.
++readDefaultFiles():String # Gives a list of files in the data folder. Does so by combining the user directory and stored docs folder name.
++readFile(String path):ArrayList<String> # reads the contents of a file from a specified path string. Calls the path parameter overload.
++readFile(Path path):ArrayList<String> # returns the list of lines from a file in a specified path. Checks to make sure that the provided path is valid.
++readFileFromDataFolder(String fileName):
