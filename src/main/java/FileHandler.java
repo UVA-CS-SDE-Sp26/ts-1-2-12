@@ -4,12 +4,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileHandler {
     String readFileName;
     ArrayList<String> storedFiles;
-    String docFolder = "data"; //directory for base text file
+    String docFolder = "data"; //directory for base text files
+    String cipherFolder = "ciphers"; //directory for cipher files
 
     public String getDocFolder() { //getter for docFolder for use by test files
         return docFolder;
@@ -108,5 +110,30 @@ public class FileHandler {
         //find the appropriate path and return readFileIndex for that path
         Path desiredPath = Paths.get(System.getProperty("user.dir"), docFolder, fileName);
         return readFileIndex(desiredPath.toString(), charIndex);
+    }
+    private List<String> readCipherFolder(String cipherName){
+        Path cipherPath = Paths.get(cipherFolder, cipherName);
+        return readFile(cipherPath);
+    }
+    public List<String> readCipherFromID(int id){ //returns a cipher file from its ID position in the folder
+        if(id<0) return null;
+
+        Path cipherPath = Paths.get(cipherFolder);
+
+        List<Path> cipherFiles;
+
+        try(Stream<Path> pathStream = Files.list(cipherPath)){
+            cipherFiles = pathStream.collect(Collectors.toList());
+        }
+        catch(IOException e){
+            e.printStackTrace();
+            cipherFiles = null; //no value for cipherFiles in the event of an IOException
+        }
+
+        if(cipherFiles != null && cipherFiles.size() > id){
+            return readCipherFolder(cipherFiles.get(id).getFileName().toString());
+        }
+        else
+            return null;
     }
 }
