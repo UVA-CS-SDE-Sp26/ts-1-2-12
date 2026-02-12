@@ -1,0 +1,12 @@
+programcontrol.txt
+Team Member C
+
+ProgramControl connects the command line to FileHandler. If no argument is given
+it prints the numbered file list. If a number is given it prints that file's contents.
+It does not read files directly, it calls FileHandler to do that.
+
+Test Plan (ProgramControlTest.java):
+- getAvailableFiles() returns a non-null, non-empty list containing test1.txt and test2.txt
+- getFileContentsByNumber() returns correct content for valid numbers
+- getFileContentsByNumber() returns an error message for 0, negatives, and out of range numbers
+- run() does not crash for null, empty string, a valid number, or a non-number
