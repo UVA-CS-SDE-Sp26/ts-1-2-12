@@ -1,7 +1,11 @@
 plugins {
+    application
     id("java")
 }
 
+application {
+    mainClass.set("TopSecret")
+}
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
