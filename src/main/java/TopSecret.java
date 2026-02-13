@@ -26,6 +26,8 @@ public class TopSecret {
 
             Cipher cipher = new Cipher(content, defaultCipherName);
 
+            System.out.print(content);
+
             try{
                 System.out.println(cipher.decipherData());
             }
@@ -33,7 +35,6 @@ public class TopSecret {
                 System.out.println("Error: cannot parse cipher file.");
             }
 
-            System.out.println(content);
         } else if (args.length == 2){
             String arg = args[0];
             String keyFile = args[1];
