@@ -1,0 +1,14 @@
+The user interface for TopSecret is a Command Line Interface (CLI).
+When the program runs with no arguments, it displays a numbered list
+of all available files in the data folder and then exits. If the
+user provides a single argument, the program interprets it as the
+numeric index of a file and displays the contents of that file in
+the terminal. If the argument is not numeric or does not correspond
+to a valid file number, an error message is printed, and
+the program exits. When two arguments are provided, the first is
+treated as the file number and the second as an optional key file and then
+the program prints the file contents along with a message indicating
+the key being used, supporting deciphering functionality. If
+more than two arguments are entered, the program prints “Too many
+arguments.” and exits.
+

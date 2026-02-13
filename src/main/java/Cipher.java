@@ -47,7 +47,7 @@ public class Cipher{
             }
             return result;
         }
-        return "Error: invalid key."
+        return "Error: invalid key.";
     }
 
 
