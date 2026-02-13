@@ -21,11 +21,9 @@ public class FileHandler {
         return docFolder;
     }
     public FileHandler(){ //blank constructor without a commandline argument
-        this.fromCommandLine = false;
-        setDataPath();
-    }
-    public FileHandler(boolean fromCommandLine){ //blank constructor without a commandline argument
-        this.fromCommandLine = fromCommandLine;
+        if(System.console() != null)
+            this.fromCommandLine = true;
+
         setDataPath();
     }
     public void setDataPath(){
@@ -66,9 +64,6 @@ public class FileHandler {
         if(Files.exists(path)){
             try{ //inside a try block, as IOExceptions will terminate program control if not caught and handled properly
                 List<String> lines = Files.readAllLines(path);
-                for(int i = 0; i < lines.size(); i++){
-                    System.out.println(lines.get(i));
-                }
 
                 readLines = new ArrayList<>(lines);
             }

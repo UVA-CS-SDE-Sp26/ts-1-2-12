@@ -12,11 +12,12 @@ public class ProgramControl {
 
     public ProgramControl() {
         fileHandler = new FileHandler();
+
         availableFiles = new ArrayList<String>();
 
         // Build the file list dynamically from the data folder
         // instead of hardcoding file names -- this way new files are picked up automatically
-        Path dataPath = Paths.get(System.getProperty("user.dir"), fileHandler.getDocFolder());
+        Path dataPath = Paths.get(fileHandler.getDataPath());
 
         try (Stream<Path> stream = Files.list(dataPath)) {
             stream.map(path -> path.getFileName().toString())
