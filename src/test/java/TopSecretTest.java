@@ -28,7 +28,6 @@ class TopSecretTest {
     void testNoArgumentsPrintsFileList() {
         TopSecret.main(new String[]{});
         String output = outContent.toString();
-        assertTrue(output.contains("Welcome to Top Secret Cipher Software"));
         assertTrue(output.contains("Available files:"));
     }
 

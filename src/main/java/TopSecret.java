@@ -2,6 +2,7 @@
  * Commmand Line Utility
  */
 public class TopSecret {
+    static String defaultCipherName = "key.txt";
     public static void main(String[] args){
         ProgramControl control = new ProgramControl();
 
@@ -20,6 +21,18 @@ public class TopSecret {
             }
 
             String content = control.getFileContentsByNumber(fileNum);
+
+            System.out.println("Using default key: " + defaultCipherName + "\n");
+
+            Cipher cipher = new Cipher(content, defaultCipherName);
+
+            try{
+                System.out.println(cipher.decipherData());
+            }
+            catch(NullPointerException e){
+                System.out.println("Error: cannot parse cipher file.");
+            }
+
             System.out.println(content);
         } else if (args.length == 2){
             String arg = args[0];
