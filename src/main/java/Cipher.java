@@ -52,19 +52,18 @@ public class Cipher {
             String result = "";
             for(int i = 0; i < data.length(); i++) { // iterates by character through the data
                 char c = data.charAt(i);
-                int index_in_key_original = key_original.indexOf(c);
-                if(index_in_key_original == -1) {
+                int index_in_key_cipher = key_cipher.indexOf(c);
+                if (index_in_key_cipher == -1) {
                     result += c;
                     // if c does not exist in key, then concatenate c to result as is.
-                } else {
-                    result += key_cipher.charAt(index_in_key_original);
-                    // concatenates the corresponding character of index of c in line 1 of key in line 2 to result
+                }
+                else {
+                    result += key_original.charAt(index_in_key_cipher);
+                    // concatenates the corresponding character of index of c in line 2 of key in line 1 to result
                 }
             }
             return result;
         }
         return "Error: invalid key.";
     }
-
-
 }
