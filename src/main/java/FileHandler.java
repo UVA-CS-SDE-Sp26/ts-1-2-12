@@ -20,40 +20,13 @@ public class FileHandler {
     public String getDocFolder() { //getter for docFolder for use by test files
         return docFolder;
     }
-    public FileHandler(String[] args){ //if commandline arguments are passed along
-        this.fromCommandLine = false;
-        setDataPath();
-
-        storedFiles = new ArrayList<String>();
-        for(int i = 0; i < args.length; i++){
-            Path path = Paths.get(args[i]);
-            if(Files.exists(path)){
-                storedFiles.add(args[i]);
-                System.out.println("File path added to list successfully.");
-            }
-        }
-    }
     public FileHandler(){ //blank constructor without a commandline argument
         this.fromCommandLine = false;
         setDataPath();
     }
-    public FileHandler(boolean fromCommandLine){
+    public FileHandler(boolean fromCommandLine){ //blank constructor without a commandline argument
         this.fromCommandLine = fromCommandLine;
         setDataPath();
-    }
-    public FileHandler(String[] args, boolean fromCommandLine){ //if commandline arguments are passed along
-        this.fromCommandLine = fromCommandLine;
-
-        setDataPath();
-
-        storedFiles = new ArrayList<String>();
-        for(int i = 0; i < args.length; i++){
-            Path path = Paths.get(args[i]);
-            if(Files.exists(path)){
-                storedFiles.add(args[i]);
-                System.out.println("File path added to list successfully.");
-            }
-        }
     }
     public void setDataPath(){
         if(fromCommandLine){
@@ -116,7 +89,7 @@ public class FileHandler {
     }
     public ArrayList<String> readFileFromDataFolder(String fileName){
         //helper function for readFile that instead allows just the document file name in the data folder
-        Path dataPath = Paths.get(System.getProperty("user.dir"), docFolder, fileName); //append the filename
+        Path dataPath = Paths.get(getDataPath(), fileName); //append the filename
         return readFile(dataPath);
     }
     public char readFileIndex(String path, int charIndex){
@@ -143,7 +116,7 @@ public class FileHandler {
     }
     public char readFileIndexFromData(String fileName, int charIndex){
         //find the appropriate path and return readFileIndex for that path
-        Path desiredPath = Paths.get(System.getProperty("user.dir"), docFolder, fileName);
+        Path desiredPath = Paths.get(getDataPath(), fileName);
         return readFileIndex(desiredPath.toString(), charIndex);
     }
     private List<String> readCipherFolder(String cipherName){

@@ -13,7 +13,7 @@ class FileHandlerTest {
 
     @BeforeEach
     void setUp(){
-        fileHandler = new FileHandler(false);
+        fileHandler = new FileHandler();
         fileContents = new ArrayList<>();
         fileContents.add(new ArrayList<>());
         fileContents.add(new ArrayList<>());
