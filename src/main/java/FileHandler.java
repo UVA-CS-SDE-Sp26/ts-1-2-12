@@ -71,9 +71,6 @@ public class FileHandler {
                 //what to do if the IOException is caught
             }
         }
-        else{
-            System.out.println("File from path " + path + " does not exist");
-        }
 
         if(!readLines.isEmpty()){
             return readLines;
@@ -116,7 +113,9 @@ public class FileHandler {
     }
     public List<String> readCipherFolder(String cipherName){
         Path cipherPath = Paths.get(dataPath.getParent().toString(), cipherFolder, cipherName);
-        System.out.println("Cipher path: " + cipherPath.toString());
+        if(!Files.exists(cipherPath)){
+            return null;
+        }
         return readFile(cipherPath);
     }
     public List<String> readCipherFromID(int id){ //returns a cipher file from its ID position in the folder

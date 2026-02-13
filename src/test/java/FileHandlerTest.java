@@ -97,4 +97,8 @@ class FileHandlerTest {
     void checkDataPath(){
         assertNotNull(fileHandler.getDataPath());
     }
+    @Test
+    void checkCipherFileByName(){
+        assertNotNull(fileHandler.readCipherFolder("key.txt"));
+    }
 }

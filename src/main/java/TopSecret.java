@@ -3,10 +3,6 @@
  */
 public class TopSecret {
     public static void main(String[] args){
-        System.out.println("");
-        System.out.println("Welcome to Top Secret Cipher Software - Command Line Edition");
-        System.out.println("");
-
         ProgramControl control = new ProgramControl();
 
         if(args.length == 0){
@@ -42,11 +38,17 @@ public class TopSecret {
             //placeholder for D
             System.out.println("Using key: " + keyFile + "\n");
 
-            System.out.println(content);
+            System.out.print(content);
 
             Cipher cipher = new Cipher(content, keyFile);
 
-            cipher.decipherData();
+            try{
+                System.out.println(cipher.decipherData());
+            }
+            catch(NullPointerException e){
+                System.out.println("Error: cannot parse cipher file.");
+            }
+            System.out.println("~~~~~~~~~~~~~~~~~~");
             return;
         } else {
             System.out.println("Too many arguments.");

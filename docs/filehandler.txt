@@ -7,12 +7,12 @@ UML:
 Class FileHandler
 ~~~~~~~~~~~~~~~~~
 +FileHandler() # blank constructor for the class that is called if there are no commandline arguments.
-+FileHandler(String[] args) # constructor that accounts for commandline arguments which specify existing files in the data folder.
 +readDefaultFiles():String # Gives a list of files in the data folder. Does so by combining the user directory and stored docs folder name.
 +readFile(String path):ArrayList<String> # reads the contents of a file from a specified path string. Calls the path parameter overload.
 +readFile(Path path):ArrayList<String> # returns the list of lines from a file in a specified path. Checks to make sure that the provided path is valid.
 +readFileFromDataFolder(String fileName):ArrayList<String> # Takes the fileName of a txt file in a data folder and reads it. Returns the list of lines in the file.
 +readFileIndex(String path, int charIndex):char # Reads a specified character at an index from a specified path
 +readFileIndexFromData(String fileName, int charIndex):char # Uses readFileIndex as a helper method to return a character from a specified index, from the data folder.
--readCipherFolder(String cipherName):List<String> # private function reads from a filename in the cipher index and returns the character's lines
++readCipherFolder(String cipherName):List<String> # private function reads from a filename in the cipher index and returns the character's lines
 +readCipherFromID(ind id):List<String> # returns a list of lines for a cipher file, from a specified index within the cipher file.
++getDataPath():String # getter for the data path
