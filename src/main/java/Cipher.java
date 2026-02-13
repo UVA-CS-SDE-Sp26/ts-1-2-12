@@ -2,27 +2,19 @@ import java.util.List;
 
 public class Cipher {
 
-    private int key_number;
+    private String cipherPath;
     private String data;
     private String key_original;
     private String key_cipher;
 
-    public Cipher(String data, int key_number) { // assumes data has already been read
+    public Cipher(String data, String cipherPath) { // assumes data has already been read
         this.data = data;
-        this.key_number = key_number;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public void setKeyNumber(int key_number) {
-        this.key_number = key_number;
+        this.cipherPath = cipherPath;
     }
 
     private String getKeyLine(int line_index) { // returns data from line index in key file
         FileHandler key_handler = new FileHandler();
-        List<String> key_list = key_handler.readCipherFromID(key_number);
+        List<String> key_list = key_handler.readCipherFolder(cipherPath);
         return key_list.get(line_index);
     }
 
@@ -39,6 +31,7 @@ public class Cipher {
 
     public String decipherData() { // deciphers the data using the cipher in the key
         if(validateKey()) {
+            System.out.println("Key validated");
             String result = "";
             for(int i = 0; i < data.length(); i++) { // iterates by character through the data
                 char c = data.charAt(i);

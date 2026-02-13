@@ -114,8 +114,9 @@ public class FileHandler {
         Path desiredPath = Paths.get(getDataPath(), fileName);
         return readFileIndex(desiredPath.toString(), charIndex);
     }
-    private List<String> readCipherFolder(String cipherName){
-        Path cipherPath = Paths.get(cipherFolder, cipherName);
+    public List<String> readCipherFolder(String cipherName){
+        Path cipherPath = Paths.get(dataPath.getParent().toString(), cipherFolder, cipherName);
+        System.out.println("Cipher path: " + cipherPath.toString());
         return readFile(cipherPath);
     }
     public List<String> readCipherFromID(int id){ //returns a cipher file from its ID position in the folder

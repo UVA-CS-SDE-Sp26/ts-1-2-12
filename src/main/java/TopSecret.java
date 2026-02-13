@@ -8,6 +8,7 @@ public class TopSecret {
         System.out.println("");
 
         ProgramControl control = new ProgramControl();
+
         if(args.length == 0){
             control.printFileList();
             return;
@@ -40,7 +41,12 @@ public class TopSecret {
 
             //placeholder for D
             System.out.println("Using key: " + keyFile + "\n");
+
             System.out.println(content);
+
+            Cipher cipher = new Cipher(content, keyFile);
+
+            cipher.decipherData();
             return;
         } else {
             System.out.println("Too many arguments.");
