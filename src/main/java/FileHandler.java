@@ -13,10 +13,17 @@ public class FileHandler {
     String docFolder = "data"; //directory for base text files
     String cipherFolder = "ciphers"; //directory for cipher files
 
+    private boolean fromCommandLine = false; //change data folder based on if this boolean is true
+
+    private Path dataPath; //use globally based on commandLine status
+
     public String getDocFolder() { //getter for docFolder for use by test files
         return docFolder;
     }
     public FileHandler(String[] args){ //if commandline arguments are passed along
+        this.fromCommandLine = false;
+        setDataPath();
+
         storedFiles = new ArrayList<String>();
         for(int i = 0; i < args.length; i++){
             Path path = Paths.get(args[i]);
@@ -27,13 +34,41 @@ public class FileHandler {
         }
     }
     public FileHandler(){ //blank constructor without a commandline argument
-        readDefaultFiles();
+        this.fromCommandLine = false;
+        setDataPath();
+    }
+    public FileHandler(boolean fromCommandLine){
+        this.fromCommandLine = fromCommandLine;
+        setDataPath();
+    }
+    public FileHandler(String[] args, boolean fromCommandLine){ //if commandline arguments are passed along
+        this.fromCommandLine = fromCommandLine;
+
+        setDataPath();
+
+        storedFiles = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++){
+            Path path = Paths.get(args[i]);
+            if(Files.exists(path)){
+                storedFiles.add(args[i]);
+                System.out.println("File path added to list successfully.");
+            }
+        }
+    }
+    public void setDataPath(){
+        if(fromCommandLine){
+            dataPath = Paths.get(System.getProperty("user.dir")).getParent().getParent().getParent(); //appends the root directory with the docFolder directory
+            dataPath = dataPath.resolve(docFolder);
+
+        }
+        else{
+            dataPath = Paths.get(System.getProperty("user.dir"), docFolder); //appends the root directory with the docFolder directory
+        }
     }
     public String readDefaultFiles(){
         System.out.println("Default Files:");
         System.out.println("~~~~~~~~~~~~~~");
 
-        Path dataPath = Paths.get(System.getProperty("user.dir"), docFolder); //appends the root directory with the docFolder directory
         System.out.println("Path: " + dataPath.toString());
 
         System.out.println("Files:");
@@ -135,5 +170,9 @@ public class FileHandler {
         }
         else
             return null;
+    }
+
+    public String getDataPath(){
+        return dataPath.toString();
     }
 }

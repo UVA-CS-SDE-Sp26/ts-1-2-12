@@ -45,14 +45,5 @@ public class TopSecret {
         } else {
             System.out.println("Too many arguments.");
         }
-
-
-         FileHandler handler = new FileHandler(args);
-         handler.readDefaultFiles();
-         handler.readFileFromDataFolder("test2.txt");
-
-        System.out.println("Reading char index from file:");
-        char returned = handler.readFileIndexFromData("test2.txt", 7);
-        System.out.println(returned);
     }
 }

@@ -60,9 +60,10 @@ class TopSecretTest {
     @Test
     //Test for too many argyments
     void testTooManyArguments() {
-        TopSecret.main(new String[]{"1", "key.txt", "extra"});
+        String[] arguments = {"1", "key.txt", "extra"};
+        TopSecret.main(arguments);
         String output = outContent.toString();
-        assertTrue(output.contains("Too many arguments."));
+        assertTrue(output.contains("Too many arguments."), "Argument count is " + arguments.length);
     }
 
     @Test

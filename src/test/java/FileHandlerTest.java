@@ -13,7 +13,7 @@ class FileHandlerTest {
 
     @BeforeEach
     void setUp(){
-        fileHandler = new FileHandler();
+        fileHandler = new FileHandler(false);
         fileContents = new ArrayList<>();
         fileContents.add(new ArrayList<>());
         fileContents.add(new ArrayList<>());
@@ -92,5 +92,9 @@ class FileHandlerTest {
     @Test
     void readFileIndex1Again(){
         assertEquals('h', fileHandler.readCipherFromID(1).get(1).toCharArray()[3]);
+    }
+    @Test
+    void checkDataPath(){
+        assertNotNull(fileHandler.getDataPath());
     }
 }
