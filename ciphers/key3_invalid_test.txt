@@ -1,2 +1,2 @@
 abcdefghijklmnopqrstuvwxyz
-bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ1234567890a
+bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890a
