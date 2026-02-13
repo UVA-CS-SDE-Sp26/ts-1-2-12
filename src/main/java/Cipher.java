@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Cipher{
+public class Cipher {
 
     private int key_number;
     private String data;
@@ -42,8 +42,14 @@ public class Cipher{
             String result = "";
             for(int i = 0; i < data.length(); i++) { // iterates by character through the data
                 char c = data.charAt(i);
-                result += key_cipher.charAt(key_original.indexOf(c));
-                // concatenates the corresponding character of index of c in line 1 of key in line 2 to result
+                int index_in_key_original = key_original.indexOf(c);
+                if (index_in_key_original == -1) {
+                    result += c;
+                    // if c does not exist in key, then concatenate c to result as is.
+                } else {
+                    result += key_cipher.charAt(index_in_key_original);
+                    // concatenates the corresponding character of index of c in line 1 of key in line 2 to result
+                }
             }
             return result;
         }
