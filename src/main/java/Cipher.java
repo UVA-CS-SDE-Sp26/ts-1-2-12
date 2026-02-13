@@ -54,7 +54,6 @@ public class Cipher {
                 char c = data.charAt(i);
                 int index_in_key_cipher = key_cipher.indexOf(c);
                 if (index_in_key_cipher == -1) {
-                    System.out.print(index_in_key_cipher);
                     result += c;
                     // if c does not exist in key, then concatenate c to result as is.
                 }
