@@ -11,9 +11,7 @@ public class TopSecret {
         if(args.length == 0){
             control.printFileList();
             return;
-        }
-
-        if (args.length == 1){
+        } else if (args.length == 1){
             String arg = args[0];
             int fileNum;
 
@@ -26,9 +24,7 @@ public class TopSecret {
 
             String content = control.getFileContentsByNumber(fileNum);
             System.out.println(content);
-        }
-
-        if (args.length == 2){
+        } else if (args.length == 2){
             String arg = args[0];
             String keyFile = args[1];
             int fileNum;
@@ -46,9 +42,10 @@ public class TopSecret {
             System.out.println("Using key: " + keyFile + "\n");
             System.out.println(content);
             return;
+        } else {
+            System.out.println("Too many arguments.");
         }
 
-        System.out.println("Too many arguments.");
 
          FileHandler handler = new FileHandler(args);
          handler.readDefaultFiles();
