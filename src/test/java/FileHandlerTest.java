@@ -14,12 +14,11 @@ class FileHandlerTest {
     @BeforeEach
     void setUp(){
         fileHandler = new FileHandler();
-        fileContents = new ArrayList<ArrayList<String>>();
-        fileContents.add(new ArrayList<String>());
-        fileContents.add(new ArrayList<String>());
+        fileContents = new ArrayList<>();
+        fileContents.add(new ArrayList<>());
+        fileContents.add(new ArrayList<>());
         fileContents.getFirst().add("This is a text file. If this is displaying, you were able to access it correctly.");
         fileContents.get(1).add("This is test 2. If you are reading this, you have accessed test2.txt"); //file contents for test1.txt and test2.txt
-
     }
 
     @Test
@@ -39,7 +38,7 @@ class FileHandlerTest {
 
     @Test
     void readFile1(){
-        assertEquals(fileHandler.readFile(""), null); //test null check for a file path
+        assertNull(fileHandler.readFile("")); //test null check for a file path
     }
 
     @Test
@@ -56,18 +55,42 @@ class FileHandlerTest {
     }
     @Test
     void testCharIndex1(){
-        assertEquals(fileHandler.readFileIndexFromData("test1.txt", 0), 'T');
+        assertEquals('T', fileHandler.readFileIndexFromData("test1.txt", 0));
     }
     @Test
     void testCharIndex2(){
-        assertEquals(fileHandler.readFileIndexFromData("test2.txt", 1), 'h');
+        assertEquals('h', fileHandler.readFileIndexFromData("test2.txt", 1));
     }
     @Test
     void testNullCharIndex(){
-        assertEquals(fileHandler.readFileIndexFromData("test1.txt", 999), ' ');
+        assertEquals(' ', fileHandler.readFileIndexFromData("test1.txt", 999));
     }
     @Test
     void testNonexistentFile(){
-        assertEquals(fileHandler.readFileIndex("fakeFile.txt", 999), ' ');
+        assertEquals(' ', fileHandler.readFileIndex("fakeFile.txt", 999));
+    }
+    @Test
+    void readDefaultCipherFile(){
+        assertEquals('a', fileHandler.readCipherFromID(0).getFirst().toCharArray()[0]);
+    }
+    @Test
+    void readDefaultCipherFileSecondLine(){
+        assertEquals('b', fileHandler.readCipherFromID(0).get(1).toCharArray()[0]);
+    }
+    @Test
+    void readNonexistentCipherFile(){
+        assertNull(fileHandler.readCipherFromID(999));
+    }
+    @Test
+    void readNegativeIndex(){
+        assertNull(fileHandler.readCipherFromID(-1));
+    }
+    @Test
+    void readFileIndex1(){
+        assertEquals('f', fileHandler.readCipherFromID(1).get(1).toCharArray()[1]);
+    }
+    @Test
+    void readFileIndex1Again(){
+        assertEquals('h', fileHandler.readCipherFromID(1).get(1).toCharArray()[3]);
     }
 }
