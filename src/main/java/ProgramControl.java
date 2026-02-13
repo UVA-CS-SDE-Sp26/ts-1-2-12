@@ -9,6 +9,7 @@ public class ProgramControl {
         fileHandler = new FileHandler();
         availableFiles = new ArrayList<String>();
 
+
         // manually add the known files in the data folder
         availableFiles.add("test1.txt");
         availableFiles.add("test2.txt");
