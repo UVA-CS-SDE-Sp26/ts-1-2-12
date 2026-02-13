@@ -20,10 +20,26 @@ public class Cipher {
         return null;
     }
 
+    private boolean noDuplicateCharacterCheck(String str){ // checks for duplicate character in a string
+        char[] charArray = str.toCharArray();
+        int length = charArray.length;
+
+        // Each loop saves the next character and iterates through entire string, checking for a duplicate
+        for(int i = 0; i < length; i++) {
+            for(int j = i + 1; j < length; j++) {
+                if(charArray[i] == charArray[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private Boolean validateKey() { // checks if line 1 and line 2 of key are the same length
         String key_original = getKeyLine(0);
         String key_cipher = getKeyLine(1);
-        if(key_original.length() == key_cipher.length() && key_original != null) {
+        if(key_original != null && key_cipher != null && key_original.length() == key_cipher.length()
+                && noDuplicateCharacterCheck(key_original) && noDuplicateCharacterCheck(key_cipher)) {
             this.key_original = key_original;
             this.key_cipher = key_cipher;
             return true;
@@ -37,7 +53,7 @@ public class Cipher {
             for(int i = 0; i < data.length(); i++) { // iterates by character through the data
                 char c = data.charAt(i);
                 int index_in_key_original = key_original.indexOf(c);
-                if (index_in_key_original == -1) {
+                if(index_in_key_original == -1) {
                     result += c;
                     // if c does not exist in key, then concatenate c to result as is.
                 } else {
