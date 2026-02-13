@@ -15,8 +15,7 @@ Class Cipher
 -key_cipher: String
 
 +Cipher(String data, int key_number) # constructor that takes data and key number as arguments.
-+setData(String data):void # setter for data for testing
-+setKeyNumber(int key_number):void # setter for key_number for testing
 -getKeyLine(int line_index):String # gets data from a specified line index in the key file
+-noDuplicateCharacterCheck(String str):boolean # checks for duplicate character in a string
 -validateKey():Boolean # checks if the key is valid, that is, original (line 1) and cipher (line 2) have the same length
 +decipherData():String # deciphers the data using the cipher in the key
